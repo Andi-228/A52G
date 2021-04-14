@@ -31,6 +31,15 @@ public class Pin : MonoBehaviour
         {
             isPinned = true;
             transform.SetParent(collisionObj.transform);
+            FindObjectOfType<ScoreText>().ChangeNumberOfPins();
+            Manager manager = FindObjectOfType<Manager>();
+            manager.addPin();
+
+            if (manager.GetTotalNumberOfPins() == manager.GetCurrentNumberOfPins())
+            {
+                manager.LevelCompleted();
+            }
+
         }
     }
 }
