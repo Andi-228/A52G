@@ -38,9 +38,17 @@ public class Manager : MonoBehaviour
     }
 
     // Update is called once per frame
-    public void LevelCompleted()
+    public void LevelCompleted( int sceneIndex)
+
+
     {
-        animator.SetLevelCompletedTrigger();
         disableGameElements();
+        int nextLevelIndex = PlayerPrefs.GetInt(Level.NEXT_LEVEL_KEY, Level.LEVEL_TO_START);
+
+        if(sceneIndex >= nextLevelIndex)
+        {
+            PlayerPrefs.SetInt(Level.NEXT_LEVEL_KEY, sceneIndex + 1);
+        }
+        animator.SetLevelCompletedTrigger();
     }
 }
