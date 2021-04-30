@@ -21,9 +21,10 @@ public class Manager : MonoBehaviour
     {
         return currentNumberOfPins;
     }
-    public void GameOver()
+    public void GameOver(int sceneIndex)
     {
         animator.SetGameOverTrigger();
+        PlayerPrefs.SetInt(Level.LAST_LEVEL_KEY, sceneIndex);
         disableGameElements();
     }
 
@@ -39,8 +40,6 @@ public class Manager : MonoBehaviour
 
     // Update is called once per frame
     public void LevelCompleted( int sceneIndex)
-
-
     {
         disableGameElements();
         int nextLevelIndex = PlayerPrefs.GetInt(Level.NEXT_LEVEL_KEY, Level.LEVEL_TO_START);

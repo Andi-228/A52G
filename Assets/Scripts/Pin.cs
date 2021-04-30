@@ -24,7 +24,7 @@ public class Pin : MonoBehaviour
         int sceneIndex = SceneManager.GetActiveScene().buildIndex;
         if(collisionObj.tag == "Pin")
         {
-            FindObjectOfType<Manager>().GameOver();
+            FindObjectOfType<Manager>().GameOver(sceneIndex);
             Debug.Log("Game Over!");
 
         }

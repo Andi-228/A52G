@@ -38,9 +38,27 @@ public class Level : MonoBehaviour
 
     }
 
+    public void LoadSceneToPlay()
+    {
+        if(PlayerPrefs.GetInt(GAME_COMPLETE_KEY, GAME_COMPLETE) == 1)
+        {
+            SceneManager.LoadScene("SELECT LVL");
+            return;
+        }
+        int sceneToLoadIndex = PlayerPrefs.GetInt(NEXT_LEVEL_KEY, LEVEL_TO_START);
+        if (sceneToLoadIndex == totalSceneNumber + 1)
+        {
+            SceneManager.LoadScene("SELECT LVL");
+
+        }
+        else
+        {
+            SceneManager.LoadScene(sceneToLoadIndex);
+        }
+    }
     public void LoadNextScene()
     {
-        if(PlayerPrefs.GetInt(GAME_COMPLETE_KEY,GAME_COMPLETE) == 1)
+        if(PlayerPrefs.GetInt(GAME_COMPLETE_KEY,GAME_INCOMPLETE) == 1)
         {
             SceneManager.LoadScene("SELECT LVL");
             return;
@@ -84,4 +102,13 @@ public class Level : MonoBehaviour
         Application.Quit();
     }
 
+    public void LoadSceneByIndex(int SceneIndex)
+    {
+        SceneManager.LoadScene(SceneIndex);
+    }
+
+    public void ResetProgress()
+    {
+        PlayerPrefs.DeleteAll();
+    }
 }

@@ -23,6 +23,7 @@ public class CameraAnimator : MonoBehaviour
         if (nextSceneIndex == level.GetTotalSceneNumber() + 1)
         {
             PlayerPrefs.SetInt(Level.GAME_COMPLETE_KEY, Level.GAME_COMPLETE);
+            level.LoadSelectLvlScene();
         }
         else
         {
